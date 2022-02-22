@@ -1,0 +1,22 @@
+{
+  "name": "tonggibesh",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "dev": "nodemon index.js"
+  },
+  "author": "Shamshod Ne'matullayev",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.2",
+    "hbs": "^4.2.0",
+    "mongoose": "^6.2.1",
+    "dependencies": {
+      "express": "^4.17.3",
+      "moment": "^2.29.1",
+      "socket.io": "^4.4.1"
+    }
+  }
+}

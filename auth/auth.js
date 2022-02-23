@@ -1,11 +1,11 @@
 const e = require('express');
 const mongoose = require('mongoose');
 // DB ga ulanish qismi 
-// mongoose.connect('mongodb+srv://tonggibesh:rich1234@cluster0.bsq80.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', {useNewUrlParser : true,
-//     useUnifiedTopology : true
-// })
+mongoose.connect('mongodb+srv://tonggibesh:rich1234@cluster0.bsq80.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', {useNewUrlParser : true,
+    useUnifiedTopology : true
+})
 
-mongoose.connect('mongodb://127.0.0.1/test')
+// mongoose.connect('mongodb://127.0.0.1/test')
 .then(()=>{
     console.log('connection mongodb...');
 }) 

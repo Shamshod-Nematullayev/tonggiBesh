@@ -1,11 +1,11 @@
 import { Router } from "express";
-import checkAuth from "../middlewares/checkAuth";
+import checkAuth from "../middlewares/checkAuth.js";
 import {
   deleteMessage,
   getChatMessages,
   sendMessage,
   updateMessageText,
-} from "../controllers/messages.controller";
+} from "../controllers/messages.controller.js";
 
 const router = Router();
 

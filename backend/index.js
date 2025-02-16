@@ -1,8 +1,8 @@
 import cookieParser from "cookie-parser";
 import express from "express";
-import authRouter from "./routers/auth";
-import messagesRouter from "./routers/messages";
-import { app } from "./utils/socket";
+import authRouter from "./routers/auth.js";
+import messagesRouter from "./routers/messages.js";
+import { app } from "./utils/socket.js";
 
 app.use(express.json());
 app.use(cookieParser());

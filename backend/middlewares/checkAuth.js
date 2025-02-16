@@ -1,5 +1,5 @@
 import jwt from "jsonwebtoken";
-import { User } from "../models/User";
+import { User } from "../models/User.js";
 
 export default async function checkAuth(req, res, next) {
   try {

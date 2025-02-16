@@ -1,5 +1,5 @@
-import { Message } from "../models/Message";
-import uploadImage from "../utils/cloudinary";
+import { Message } from "../models/Message.js";
+import uploadImage from "../utils/cloudinary.js";
 
 export const getChatMessages = async (req, res) => {
   try {

@@ -7,8 +7,21 @@ const server = http.createServer(app);
 
 const io = new Server(server, {
   cors: {
-    origin: "http://localhost:3000",
+    origin: "*",
+    credentials: true
   },
 });
+
+const userSocketMap = {}; 
+
+io.on("connection", socket => {
+  console.log("New client connected");
+  console.log(socket.handshake.query.userId);
+  console.log("🔗 Yangi mijoz ulandi:", socket.id);
+
+  socket.on("disconnect", () => {
+    console.log("🔌 Mijoz uzildi:", socket.id);
+  });
+})
 
 export { io, app, server };

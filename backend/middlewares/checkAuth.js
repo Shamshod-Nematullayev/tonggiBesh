@@ -3,7 +3,7 @@ import { User } from "../models/User.js";
 
 export default async function checkAuth(req, res, next) {
   try {
-    const token = req.cookies.jwt;
+    const token = req.cookies.Authorization.split(" ")[1];
     if (!token) {
       return res.status(401).json({ message: "You are not authenticated" });
     }

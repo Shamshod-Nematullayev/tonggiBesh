@@ -1,5 +1,6 @@
 import { Message } from "../models/Message.js";
 import uploadImage from "../utils/cloudinary.js";
+import { io, userSocketMap } from "../utils/socket.js";
 
 export const getChatMessages = async (req, res) => {
   try {
@@ -21,6 +22,9 @@ export const sendMessage = async (req, res) => {
       receiverId: req.params.chatId,
       image: (await uploadImage(req.body.image)).secure_url,
     });
+    if(userSocketMap[message.receiverId]){
+      io.to(userSocketMap[message.receiverId]).emit("newMessage", message);
+    }
     res.status(201).json(message);
   } catch (error) {
     console.error(error.message);

@@ -15,13 +15,11 @@ const io = new Server(server, {
 const userSocketMap = {}; 
 
 io.on("connection", socket => {
-  console.log("New client connected");
-  console.log(socket.handshake.query.userId);
-  console.log("🔗 Yangi mijoz ulandi:", socket.id);
-
+  userSocketMap[socket.handshake.query.userId] = socket.id
+  io.emit("onlineUsers", userSocketMap)
   socket.on("disconnect", () => {
-    console.log("🔌 Mijoz uzildi:", socket.id);
+    delete userSocketMap[socket.id]
   });
 })
 
-export { io, app, server };
+export { io, app, server, userSocketMap };

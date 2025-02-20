@@ -13,8 +13,9 @@ router.get("/:chatId", checkAuth, getChatMessages);
 
 router.post("/:chatId", checkAuth, sendMessage);
 
-router.put("/:messageId", checkAuth, updateMessageText);
+// futures
+// router.put("/:messageId", checkAuth, updateMessageText);
 
-router.delete("/:messageId", checkAuth, deleteMessage);
+// router.delete("/:messageId", checkAuth, deleteMessage);
 
 export default router;

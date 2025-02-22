@@ -9,9 +9,9 @@ import {
 
 const router = Router();
 
-router.get("/:chatId", checkAuth, getChatMessages);
+router.get("/:chatId", getChatMessages);
 
-router.post("/:chatId", checkAuth, sendMessage);
+router.post("/:chatId", sendMessage);
 
 // futures
 // router.put("/:messageId", checkAuth, updateMessageText);

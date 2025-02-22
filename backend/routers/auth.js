@@ -17,6 +17,6 @@ router.get("/logout", logout);
 
 router.get("/profile", checkAuth, getProfile);
 
-router.patch("/updateProfilePic", checkAuth, updateProfile);
+router.patch("/profile", checkAuth, updateProfile);
 
 export default router;

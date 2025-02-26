@@ -242,8 +242,8 @@ To connect to the WebSocket server, the client must send a JWT token:
 
 ```json
 {
-  "query": {
-    "token": "<Auth token - JWT>"
+  "headers": {
+    "Cookie": "Authorization=<Auth token - JWT>"
   }
 }
 ```

@@ -1,22 +1,24 @@
 import { Server } from "socket.io";
 import http from "http";
 import express from "express";
+import jwt from "jsonwebtoken";
 
 const app = express();
 const server = http.createServer(app);
 
 const io = new Server(server, {
   cors: {
-    origin: "*",
-    credentials: true
+    origin: "http://localhost:5173",
+    credentials: true,
   },
 });
 
-const userSocketMap = {}; 
+const userSocketMap = {};
 
 io.on("connection", (socket) => {
-  const token = socket.handshake.auth?.token || socket.handshake.query?.token;
-
+  const token = socket.handshake.headers.cookie?.match(
+    /Authorization=([^;]+)/
+  )[1];
   if (!token) {
     console.log("Token yo‘q, ulanish rad etildi!");
     return socket.disconnect(true);
@@ -37,9 +39,9 @@ io.on("connection", (socket) => {
     });
   } catch (err) {
     console.log("Noto‘g‘ri token, ulanish rad etildi!");
+    console.error(err.message);
     return socket.disconnect(true);
   }
 });
-
 
 export { io, app, server, userSocketMap };

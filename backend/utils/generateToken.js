@@ -8,7 +8,7 @@ function generateToken(userId, res) {
     process.env.JWT_SECRET_KEY,
     { expiresIn: "6h" }
   );
-  res.cookie("jwt", token, {
+  res.cookie("Authorization", token, {
     maxAge: 1000 * 60 * 60 * 6,
     httpOnly: true,
     sameSite: "strict",

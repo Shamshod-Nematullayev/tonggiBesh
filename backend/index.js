@@ -1,13 +1,13 @@
-import cookieParser from "cookie-parser";
 import express from "express";
+import cookieParser from "cookie-parser";
 import authRouter from "./routers/auth.js";
 import messagesRouter from "./routers/messages.js";
 import { server, app } from "./utils/socket.js";
-import cors from 'cors'
+import cors from "cors";
 
 app.use(express.json());
 app.use(cookieParser());
-app.use(cors())
+app.use(cors());
 
 app.use("/api/auth", authRouter);
 app.use("/api/messages", messagesRouter);

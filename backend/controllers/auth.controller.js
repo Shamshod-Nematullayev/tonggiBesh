@@ -20,12 +20,11 @@ export const signup = async (req, res) => {
     const hashedPassword = await bcrypt.hash(password, salt);
     const user = new User({ email, password: hashedPassword, username });
     await user.save();
-    const res = generateToken(user._id, res);
+    generateToken(user._id, res);
     res.status(201).json({
       _id: user._id,
       username: user.username,
       email: user.email,
-      profilePicture: user.profilePicture,
     });
   } catch (error) {
     console.error(error.message);
@@ -40,7 +39,7 @@ export const login = async (req, res) => {
       return res.status(200).json({ message: "All fields are required" });
     }
 
-    const user = await User.findOne({ email });
+    const user = await User.findOne({ email }).select("+password");
     const verified = await bcrypt.compare(password, user.password);
     if (!verified) {
       res.status(400).json({

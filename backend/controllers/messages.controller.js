@@ -23,6 +23,7 @@ export const sendMessage = async (req, res) => {
       receiverId: req.params.chatId,
       image: (await uploadImage(req.body.image)).secure_url,
     });
+
     if (userSocketMap[message.receiverId]) {
       io.to(userSocketMap[message.receiverId]).emit("newMessage", message);
     }

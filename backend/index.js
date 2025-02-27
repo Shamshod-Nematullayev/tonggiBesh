@@ -2,6 +2,7 @@ import express from "express";
 import cookieParser from "cookie-parser";
 import authRouter from "./routers/auth.js";
 import messagesRouter from "./routers/messages.js";
+import usersRouter from "./routers/users.js";
 import { config } from "dotenv";
 
 config({ path: "./.env" });
@@ -26,6 +27,7 @@ app.use(
 
 app.use("/api/auth", authRouter);
 app.use("/api/messages", checkAuth, messagesRouter);
+app.use("/api/users", checkAuth, usersRouter);
 
 const PORT = process.env.PORT || 4000;
 server.listen(PORT, () => console.log("Server listening port: " + PORT));

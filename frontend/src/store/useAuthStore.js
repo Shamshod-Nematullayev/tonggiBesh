@@ -1,5 +1,5 @@
 import { create } from "zustand";
-import { axiosInstance } from "../lib/axios.js";
+import axiosInstance  from "../lib/axios.js";
 import toast from "react-hot-toast";
 import { io } from "socket.io-client";
 
@@ -72,7 +72,7 @@ export const useAuthStore = create((set, get) => ({
   updateProfile: async (data) => {
     set({ isUpdatingProfile: true });
     try {
-      const res = await axiosInstance.put("/auth/update-profile", data);
+      const res = await axiosInstance.patch("/users/profile", data);
       set({ authUser: res.data });
       toast.success("Profile updated successfully");
     } catch (error) {

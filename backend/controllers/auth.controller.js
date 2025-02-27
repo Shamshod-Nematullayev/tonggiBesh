@@ -98,24 +98,3 @@ export const getProfile = async (req, res) => {
   }
 };
 
-// **Update Profile (Profilni yangilash)**
-export const updateProfile = async (req, res) => {
-  try {
-    const { profilePic } = req.body;
-
-    const user = await User.findByIdAndUpdate(
-      req.user.id,
-      { $set: { profilePicture: profilePic } },
-      { new: true }
-    ).select("-password");
-
-    if (!user) {
-      return res.status(404).json({ message: "User not found" });
-    }
-
-    res.status(200).json(user);
-  } catch (error) {
-    console.error(error.message);
-    res.status(500).json({ message: "Internal server error" });
-  }
-};

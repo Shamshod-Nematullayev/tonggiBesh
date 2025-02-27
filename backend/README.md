@@ -27,7 +27,7 @@ This API works based on `JWT` authentication. To access protected endpoints, the
 
 ### **🔹 Register (Signup)**
 
-```console
+```http
 POST /api/auth/signup
 ```
 
@@ -56,7 +56,7 @@ POST /api/auth/signup
 
 ### **🔹 Login**
 
-```console
+```http
 POST /api/auth/login
 ```
 
@@ -86,7 +86,7 @@ POST /api/auth/login
 
 ### **🔹 Logout**
 
-```console
+```http
 POST /api/auth/logout
 ```
 
@@ -102,7 +102,7 @@ POST /api/auth/logout
 
 ### **🔹 Get User Profile**
 
-```console
+```http
 GET /api/auth/profile
 ```
 
@@ -121,7 +121,7 @@ GET /api/auth/profile
 
 ### **🔹 Update Profile Picture**
 
-```console
+```http
 PATCH /api/auth/profile
 ```
 
@@ -145,6 +145,24 @@ PATCH /api/auth/profile
 ---
 
 ## 3. Message Endpoints
+
+### 🔹 Get Users List
+```http
+GET /api/users
+```
+
+#### Response:
+
+```json
+[
+  {
+  "_id": "67c08ccd42b71001cfa16881",
+  "username": "John Doe",
+  "createdAt": "2025-02-27T16:03:25.992Z",
+  "__v": 0
+  }
+]
+```
 
 ### 🔹 Get Chat Messages
 

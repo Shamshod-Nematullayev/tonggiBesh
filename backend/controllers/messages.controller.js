@@ -5,8 +5,10 @@ import { io, userSocketMap } from "../utils/socket.js";
 export const getChatMessages = async (req, res) => {
   try {
     const messages = await Message.find({
-      receiverId: req.params.chatId,
-      senderId: req.user._id,
+      $or: [
+        { senderId: req.user._id, receiverId: req.params.chatId },
+        { senderId: req.params.chatId, receiverId: req.user._id },
+      ]
     }).sort({ createdAt: 1 });
     res.status(200).json(messages);
   } catch (error) {
@@ -17,19 +19,21 @@ export const getChatMessages = async (req, res) => {
 
 export const sendMessage = async (req, res) => {
   try {
+    let imageUrl;
+    if(req.body.image) 
+      imageUrl = (await uploadImage(req.body.image)).secure_url;
     const message = await Message.create({
       text: req.body.text,
       senderId: req.user._id,
       receiverId: req.params.chatId,
-      image: (await uploadImage(req.body.image)).secure_url,
+      image: imageUrl,
     });
-
     if (userSocketMap[message.receiverId]) {
       io.to(userSocketMap[message.receiverId]).emit("newMessage", message);
     }
     res.status(201).json(message);
   } catch (error) {
-    console.error(error.message);
+    console.error(error);
     res.status(500).json({ message: "Server error" });
   }
 };

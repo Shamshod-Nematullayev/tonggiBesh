@@ -16,8 +16,8 @@ const schema = new Schema(
   { timestamps: true }
 );
 
-schema.pre("save", (next) => {
-  if (!this.text && !this.picture) {
+schema.pre("save", function(next)  {
+  if (!this.text && !this.image) {
     return next(new Error("Message text or image must be provided"));
   }
   next();
